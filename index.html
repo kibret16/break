@@ -37,6 +37,7 @@ text.innerHTML = "Ready";
 
 function say(msg) {
   var msg = new SpeechSynthesisUtterance(msg);
+  msg.voice = voicesList.find((voice) => voice.lang === 'en-US');
   speechSynthesis.speak(msg);
 }
 
