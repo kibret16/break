@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breathe</title>
+  </head>
+  <body>
+
+    <div class="container" id="container">
+      <button onclick="breathExercise()">Start</button>
+      <p id="text"></p>
+      <code id="counter"></code>
+
+    </div>
+
+<script>
+
+const container = document.getElementById('container');
+const text = document.getElementById('text');
+const counter = document.getElementById("counter");
+
+const sec = 1000;
+const min = 60 * sec;
+
+var readyTime = 3*sec;
+var breatheInTime = 4*sec;
+var holdTime = 7*sec;
+var breatheOutTime = 8*sec;
+var breatheTime = breatheInTime + holdTime + breatheOutTime;
+var rounds = 3;
+var totalTime = rounds * breatheTime;
+
+const zeroPad = (num, places) => String(num).padStart(places, '0')
+var time = rounds * (breatheTime/sec);
+text.innerHTML = "Ready";
+
+function say(msg) {
+  var msg = new SpeechSynthesisUtterance(msg);
+  speechSynthesis.speak(msg);
+}
+
+function breathe() {
+  setTimeout(function(){ 
+    text.innerHTML = "Breathe In";
+    say("Breathe In");
+  }, readyTime);
+
+  setTimeout(function(){ 
+    text.innerHTML = "Hold";
+    say("Hold");
+  }, breatheInTime + readyTime);
+
+  setTimeout(function(){ 
+    text.innerHTML = "Breathe Out";
+    say("Breathe Out");
+  }, holdTime + breatheInTime + readyTime);
+}
+
+function breathExercise() {
+  breathe();
+  rounds--;
+  var breatheRounds = setInterval(function (){
+    breathe();
+    rounds--
+    if(rounds == 0) clearInterval(breatheRounds);
+  }, breatheTime);
+
+  var timer = setInterval(function(){
+    counter.innerHTML = ("Time: " + zeroPad(time, 2))
+    time --
+    if(time < 0) {
+      counter.innerHTML = ("Done!")
+      clearInterval(timer);
+    }
+  }, 1000);
+}
+
+</script>
+
+
+  </body>
+</html>
+
+
