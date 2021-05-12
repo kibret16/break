@@ -2,183 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Breathe</title>
-  <link rel='manifest' href='manifest.json'>
-  <script>
-    if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-        navigator.serviceWorker
-          .register("pwabuilder-sw.js", {
-            scope: "./"
-          })
-          .then(function(reg) {
-            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-          });
-      }
-    }
-  </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breathe</title>
+<link rel='manifest' href='manifest.json'>
+<link rel="stylesheet" href="style.css" >
 </head>
 <body>
+
+<div class="container">
 <div id="steps">
-  <ol>
-    <li><b>Ready:</b> Exhale, then click <b>START</b></li>
-    <li>
-      <b>Breathe in:</b> Close your mouth and inhale quietly through your nose.
-      <br><b>Hold:</b> Hold your breath.
-      <br><b>Breathe out:</b> Exhale completely through your mouth, making a whoosh sound.
-    </li>
-    <li>Repeat.
-  </ol>
+<ol>
+  <li><b>Ready:</b> Exhale, then click <b>START</b></li>
+  <li>
+    <b>Breathe in:</b> Close your mouth and inhale quietly through your nose.
+    <br><b>Hold:</b> Hold your breath.
+    <br><b>Breathe out:</b> Exhale completely through your mouth, making a whoosh sound.
+  </li>
+  <li>Repeat
+</ol>
 </div>
-<div class="container" id="container">
-  <h3 id="start-button" onclick="breathExercise()">START</h3>
-  <div id="breathe-counter">
-    <div>
-      <p id="text"></p>
-      <code id="counter"></code>
-    </div>
+<div class="text-center" id="container">
+<h3 id="start-button" onclick="breathExercise()">START</h3>
+<div id="breathe-counter">
+  <div>
+    <p id="text"></p>
+    <code id="counter"></code>
   </div>
 </div>
+</div>
+</div>
 
-<style>
-html {
-  box-sizing: border-box;
-}
+<script src="script.js" ></script>
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-  font-family: system-ui;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #222;
-  color: #aaa;
-  padding: 1em;
-}
-
-#steps {
-  padding: 1em;
-  margin: unset;
-}
-
-#steps ol {
-  margin: 1em;
-}
-
-#text {
-  font-size: 3em;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-#counter {
-  font-size: 1em;
-  font-family: menlo, monospace;
-}
-
-#start-button {
-  border: 1px solid;
-  padding: 2em;
-}
-
-#breathe-counter {
-  background-color: #333;
-  border-radius: 50%;
-  height: 100%;
-  padding-top: 100%;
-  position: relative;
-}
-
-#breathe-counter > div {
-  position: absolute;
-  top: 40%;
-  margin: auto;
-  text-align: center;
-  width: 100%
-}
-
-.container {
-  width: 100%;
-  text-align: center;
-}
-</style>
-
-<script>
-const container = document.getElementById('container');
-const startButton = document.getElementById('start-button');
-const breatheCounter = document.getElementById('breathe-counter');
-const text = document.getElementById('text');
-const counter = document.getElementById("counter");
-
-breatheCounter.style.display = "none";
-
-const sec = 1000;
-const min = 60 * sec;
-
-var date = new Date();
-date = date.getDate();
-
-var readyTime = 0*sec;
-var breatheInTime = 4*sec;
-var holdTime = 7*sec;
-var breatheOutTime = 8*sec;
-var breatheTime = breatheInTime + holdTime + breatheOutTime;
-var rounds = date;
-var totalTime = rounds * breatheTime;
-
-const zeroPad = (num, places) => String(num).padStart(places, '0')
-var time = rounds * (breatheTime/sec);
-text.innerHTML = "Ready";
-
-function say(msg) {
-  var msg = new SpeechSynthesisUtterance(msg);
-  var voicesList = speechSynthesis.getVoices();
-  msg.voice = voicesList.find((voice) => voice.lang === 'en-US');
-  speechSynthesis.speak(msg);
-}
-
-function breathe() {
-  setTimeout(function(){ 
-    text.innerHTML = "Breathe In";
-    say("Breathe In");
-  }, readyTime);
-
-  setTimeout(function(){ 
-    text.innerHTML = "Hold";
-    say("Hold");
-    }, breatheInTime + readyTime);
-
-    setTimeout(function(){ 
-      text.innerHTML = "Breathe Out";
-      say("Breathe Out");
-    }, holdTime + breatheInTime + readyTime);
-  }
-
-  function breathExercise() {
-    startButton.style.display = "none"; 
-    breatheCounter.style.display = "block";
-
-    breathe();
-    counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
-    rounds--;
-    var breatheRounds = setInterval(function (){
-      breathe();
-      counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
-      rounds--
-      if(rounds == 0) clearInterval(breatheRounds);
-    }, breatheTime);
-  }
-</script>
-
-
-  </body>
+</body>
 </html>
 
 

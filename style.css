@@ -1,0 +1,68 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: avenir, system-ui;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #222;
+  color: #aaa;
+  padding: 1em;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#steps {
+  padding: 1em;
+  margin: unset;
+}
+
+#steps ol {
+  margin: 1em;
+}
+
+#text {
+  font-size: 3em;
+  font-family: 'avenir black', impact, sans-serif;
+}
+
+#counter {
+  font-size: 1em;
+  font-family: menlo, monospace;
+}
+
+#start-button {
+  border: 1px solid;
+  padding: 2em;
+}
+
+#breathe-counter {
+  background-color: #333;
+  border-radius: 50%;
+  height: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+#breathe-counter>div {
+  position: absolute;
+  top: 40%;
+  margin: auto;
+  text-align: center;
+  width: 100%
+}
