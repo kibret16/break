@@ -14,8 +14,19 @@
 
     </div>
 
-<script>
+<style>
+.container {
+  display: grid;
+  vertical-align: middle;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  font-family: blinkmacsystemfont;
+}
+</style>
 
+<script>
 const container = document.getElementById('container');
 const text = document.getElementById('text');
 const counter = document.getElementById("counter");
@@ -23,12 +34,15 @@ const counter = document.getElementById("counter");
 const sec = 1000;
 const min = 60 * sec;
 
-var readyTime = 3*sec;
+var date = new Date();
+date = date.getDate();
+
+var readyTime = 0*sec;
 var breatheInTime = 4*sec;
 var holdTime = 7*sec;
 var breatheOutTime = 8*sec;
 var breatheTime = breatheInTime + holdTime + breatheOutTime;
-var rounds = 3;
+var rounds = date;
 var totalTime = rounds * breatheTime;
 
 const zeroPad = (num, places) => String(num).padStart(places, '0')
@@ -37,6 +51,7 @@ text.innerHTML = "Ready";
 
 function say(msg) {
   var msg = new SpeechSynthesisUtterance(msg);
+  var voicesList = speechSynthesis.getVoices();
   msg.voice = voicesList.find((voice) => voice.lang === 'en-US');
   speechSynthesis.speak(msg);
 }
@@ -60,23 +75,15 @@ function breathe() {
 
 function breathExercise() {
   breathe();
+  counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
   rounds--;
   var breatheRounds = setInterval(function (){
     breathe();
+    counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
     rounds--
     if(rounds == 0) clearInterval(breatheRounds);
   }, breatheTime);
-
-  var timer = setInterval(function(){
-    counter.innerHTML = ("Time: " + zeroPad(time, 2))
-    time --
-    if(time < 0) {
-      counter.innerHTML = ("Done!")
-      clearInterval(timer);
-    }
-  }, 1000);
 }
-
 </script>
 
 
