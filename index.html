@@ -7,16 +7,10 @@
   <title>Breathe</title>
   <link rel='manifest' href='manifest.json'>
   <script>
-    // This is the "Offline page" service worker
-
-    // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-    // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {
       if (navigator.serviceWorker.controller) {
         console.log("[PWA Builder] active service worker found, no need to register");
       } else {
-          // Register the service worker
         navigator.serviceWorker
           .register("pwabuilder-sw.js", {
             scope: "./"
@@ -30,9 +24,8 @@
 </head>
 <body>
 <div id="steps">
-  <h3>Steps</h3>
-  <ol class="steps">
-    <li><b>Ready:</b> Exhale completely, then click <b>START</b></li>
+  <ol>
+    <li><b>Ready:</b> Exhale, then click <b>START</b></li>
     <li>
       <b>Breathe in:</b> Close your mouth and inhale quietly through your nose.
       <br><b>Hold:</b> Hold your breath.
@@ -44,8 +37,10 @@
 <div class="container" id="container">
   <h3 id="start-button" onclick="breathExercise()">START</h3>
   <div id="breathe-counter">
-    <p id="text"></p>
-    <code id="counter"></code>
+    <div>
+      <p id="text"></p>
+      <code id="counter"></code>
+    </div>
   </div>
 </div>
 
@@ -58,14 +53,9 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  font-family: -apple-system,
-  'SF Pro',
-  BlinkMacSystemFont,
-  'Segoe UI',
-  'Open Sans',
-  'Helvetica Neue',
-  sans-serif;
-
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -74,12 +64,23 @@ body {
   padding: 1em;
 }
 
+#steps {
+  padding: 1em;
+  margin: unset;
+}
+
+#steps ol {
+  margin: 1em;
+}
+
 #text {
   font-size: 3em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #counter {
-  font-size: 2em;
+  font-size: 1em;
+  font-family: menlo, monospace;
 }
 
 #start-button {
@@ -88,9 +89,19 @@ body {
 }
 
 #breathe-counter {
-  padding: 6em 2em;
   background-color: #333;
   border-radius: 50%;
+  height: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+#breathe-counter > div {
+  position: absolute;
+  top: 40%;
+  margin: auto;
+  text-align: center;
+  width: 100%
 }
 
 .container {
@@ -105,7 +116,6 @@ const startButton = document.getElementById('start-button');
 const breatheCounter = document.getElementById('breathe-counter');
 const text = document.getElementById('text');
 const counter = document.getElementById("counter");
-
 
 breatheCounter.style.display = "none";
 
@@ -143,28 +153,28 @@ function breathe() {
   setTimeout(function(){ 
     text.innerHTML = "Hold";
     say("Hold");
-  }, breatheInTime + readyTime);
+    }, breatheInTime + readyTime);
 
-  setTimeout(function(){ 
-    text.innerHTML = "Breathe Out";
-    say("Breathe Out");
-  }, holdTime + breatheInTime + readyTime);
-}
+    setTimeout(function(){ 
+      text.innerHTML = "Breathe Out";
+      say("Breathe Out");
+    }, holdTime + breatheInTime + readyTime);
+  }
 
-function breathExercise() {
-  startButton.style.display = "none"; 
-  breatheCounter.style.display = "block";
+  function breathExercise() {
+    startButton.style.display = "none"; 
+    breatheCounter.style.display = "block";
 
-  breathe();
-  counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
-  rounds--;
-  var breatheRounds = setInterval(function (){
     breathe();
     counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
-    rounds--
-    if(rounds == 0) clearInterval(breatheRounds);
-  }, breatheTime);
-}
+    rounds--;
+    var breatheRounds = setInterval(function (){
+      breathe();
+      counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
+      rounds--
+      if(rounds == 0) clearInterval(breatheRounds);
+    }, breatheTime);
+  }
 </script>
 
 
