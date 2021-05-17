@@ -2,7 +2,7 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open('/').then((cache) => cache.addAll([
       'index.html',
-      'circles_icon.png',
+      'images/apple-touch-icon.png',
       'style.css',
       'script.js',
     ])),
