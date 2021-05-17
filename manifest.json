@@ -12,10 +12,11 @@
     "prefer_related_applications": false,
     "icons": [{
             "src": "circles_icon.png",
-            "sizes": "96x96",
+            "sizes": "144x144",
             "type": "image/png",
             "purpose": "maskable any"
         }],
-    "url": "/",
+    "url": "https://kibret16.github.io/break/",
+    "start_url": "/",
     "generated": "true"
 }
