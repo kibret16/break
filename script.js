@@ -31,7 +31,7 @@ var breatheInTime = 4*sec;
 var holdTime = 7*sec;
 var breatheOutTime = 8*sec;
 var breatheTime = breatheInTime + holdTime + breatheOutTime;
-var rounds = date;
+var rounds = 2;date;
 var totalTime = rounds * breatheTime;
 
 const zeroPad = (num, places) => String(num).padStart(places, '0')
@@ -74,6 +74,11 @@ function breathExercise() {
     breathe();
     counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
     rounds--
-    if(rounds == 0) clearInterval(breatheRounds);
+    if(rounds == 0) {
+      clearInterval(breatheRounds);
+      text.innerHTML = "Done.";
+      say("You're done.");
+      counter.innerHTML = ("");
+    }
   }, breatheTime);
 }
