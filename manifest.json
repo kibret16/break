@@ -1,11 +1,9 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "Break",
-    "scope": "/break/",
+    "name": "Breathe",
     "display": "standalone",
-    "start_url": "https://kibret16.github.io/break/",
-    "short_name": "Break",
+    "short_name": "Breathe",
     "theme_color": "transparent",
     "description": "",
     "orientation": "any",
@@ -18,6 +16,6 @@
             "type": "image/png",
             "purpose": "maskable any"
         }],
-    "url": "https://kibret16.github.io/break/",
+    "url": "/",
     "generated": "true"
 }
