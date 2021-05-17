@@ -11,11 +11,15 @@
     "related_applications": [],
     "prefer_related_applications": false,
     "icons": [{
-            "src": "circles_icon.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "maskable any"
-        }],
+            "src": "images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }, {
+            "src": "images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
     "url": "https://kibret16.github.io/break/",
     "start_url": "/",
     "generated": "true"
