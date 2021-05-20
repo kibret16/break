@@ -68,7 +68,7 @@ function breathExercise() {
   breatheCounter.style.display = "block";
 
   breathe();
-  var audio = new Audio('audio/test.wav');
+  var audio = new Audio('audio/2min.mp3');
   audio.play();
   counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
   rounds--;
