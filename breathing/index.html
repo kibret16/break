@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Breathe</title>
+<link rel='manifest' href='manifest.json'>
+<link rel="stylesheet" href="style.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="any" href="images/apple-touch-icon.png">
+<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+
+</head>
+
+<body>
+
+<div class="container">
+  <div id="steps">
+    <ol>
+      <li><b>Ready:</b> Exhale, then click <b>START</b></li>
+      <li>
+        <b>Breathe in:</b> Close your mouth and inhale quietly through your nose.
+        <br><b>Hold:</b> Hold your breath.
+        <br><b>Breathe out:</b> Exhale completely through your mouth, making a whoosh sound.
+      </li>
+      <li>Repeat
+    </ol>
+  </div>
+  <div class="text-center" id="container">
+    <h3 id="start-button" onclick="breathExercise()">START</h3>
+    <div id="breathe-counter">
+      <div>
+        <p id="text"></p>
+        <code id="counter"></code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+</div>
+
+
+<div id="install-link">
+  <div id="install-text">Install this app</div>
+</div>
+
+<style>
+#install-link {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1em;
+}
+
+#install-link #install-text{
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  background: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+</style>
+<script>
+
+
+link = document.getElementById("install-link");
+link.style.display = "";
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("This is running as standalone.");
+  link.style.display = "block";
+}
+</script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
