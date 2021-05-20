@@ -67,3 +67,20 @@ body {
   text-align: center;
   width: 100%
 }
+
+#install-instructions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1em;
+  cursor: pointer;
+}
+
+#install-link, #install-text {
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  background: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

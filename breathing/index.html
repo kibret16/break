@@ -46,37 +46,14 @@
 </div>
 
 
-<div id="install-link">
-  <div id="install-text">Install this app</div>
+<div id="install-instructions">
+  <div id="install-link" onclick="showdiv('install-text')">Install this app</div>
+  <div id="install-text" style="display: none;">
+    Open page in Safari, Click on the Share button, and "Add to Home Screen".
+  </div>
 </div>
 
-<style>
-#install-link {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1em;
-}
 
-#install-link #install-text{
-  text-align: center;
-  width: 100%;
-  padding: 1em;
-  background: black;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-</style>
-<script>
-
-
-link = document.getElementById("install-link");
-link.style.display = "";
-if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log("This is running as standalone.");
-  link.style.display = "block";
-}
 </script>
 
 <script src="script.js"></script>

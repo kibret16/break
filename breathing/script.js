@@ -12,6 +12,12 @@ if ("serviceWorker" in navigator) {
   }
 }
 
+link = document.getElementById("install-link");
+link.style.display = "none";
+if (!window.matchMedia('(display-mode: standalone)').matches) {
+  link.style.display = "block";
+}
+
 var container = document.getElementById('container');
 var startButton = document.getElementById('start-button');
 var breatheCounter = document.getElementById('breathe-counter');
@@ -68,8 +74,8 @@ function breathExercise() {
   breatheCounter.style.display = "block";
 
   breathe();
-  var audio = new Audio('audio/2min.mp3');
-  audio.play();
+  // var audio = new Audio('audio/2min.mp3');
+  // audio.play();
   counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
   rounds--;
   var breatheRounds = setInterval(function (){
@@ -85,4 +91,8 @@ function breathExercise() {
     counter.innerHTML = ("Round: " + zeroPad(rounds, 2));
     rounds--
   }, breatheTime);
+}
+
+function showdiv(id){
+  document.getElementById(id).style.display = "block";
 }
