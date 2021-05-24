@@ -37,7 +37,7 @@ var breatheInTime = 4*sec;
 var holdTime = 7*sec;
 var breatheOutTime = 8*sec;
 var breatheTime = breatheInTime + holdTime + breatheOutTime;
-var rounds = date;
+var rounds = Math.floor(Math.random() * 10) + 5; //date; //from 5 to 15
 var totalTime = rounds * breatheTime;
 
 const zeroPad = (num, places) => String(num).padStart(places, '0')
